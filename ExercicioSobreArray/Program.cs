@@ -8,12 +8,7 @@ namespace ExercicioSobreArray
         
         static int maiorValor = sequencianumbers[0];
         static int menorValor = sequencianumbers[0];
-        
-        
-       
-            
-            
-            
+                                                
         static void OrdenarOsNumeros()
         {
             for ( int i = 0; i < sequencianumbers.Length; i++ )
@@ -59,9 +54,6 @@ namespace ExercicioSobreArray
             }
         }
 
-
-
-
         static void EncontrarMenorValor()
         {
             for ( int i = 0; i < sequencianumbers.Length;i++ )
@@ -76,7 +68,6 @@ namespace ExercicioSobreArray
             Console.WriteLine("O menor valor é: " + menorValor);
 
         }
-
 
         static void EncontrarMaiorValor()
         {
@@ -93,9 +84,7 @@ namespace ExercicioSobreArray
             Console.WriteLine("O maior valor é: " + maiorValor);
         }
 
-
-
-        static void EncontrarOs3MaioresValores()
+        static int[] EncontrarOs3MaioresValores()
         {
             Array.Sort(sequencianumbers);
             Array.Reverse(sequencianumbers);
@@ -115,9 +104,9 @@ namespace ExercicioSobreArray
                 
            } 
             Console.ReadLine();
+
+            return tresMaiores;
         }
-
-
 
         static int[] ValoresNegativos()
         {
@@ -147,7 +136,10 @@ namespace ExercicioSobreArray
 
             for (int i = 0; i < valoresNegativos.Length; i++)
             {
-                Console.Write(" " + valoresNegativos[i]);
+                Console.Write(valoresNegativos[i]);
+
+                if (i != valoresNegativos.Length - 1)
+                    Console.Write(",");
 
             }
 
@@ -167,7 +159,6 @@ namespace ExercicioSobreArray
             
             return valorMedio;
         }
-
 
         static void Main(string[] args)
         {
