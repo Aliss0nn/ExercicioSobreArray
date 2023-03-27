@@ -1,87 +1,171 @@
-﻿namespace ExercicioSobreArray
+﻿using System.Globalization;
+
+namespace ExercicioSobreArray
 {
     internal class Program
     {
-        static int[] numbers = new int[10] { 1, 2, 4, 5, 6, 7, -3, 8, 10, 9 };
-        static int valorNegativo = -3;
-        static int maiorValor = 10;
-        static int menorValor = 1;
-        static int segundoMaior = 9;
-        static int terceiroMaior = 8;
-        static int valorMedio = numbers[valorMedio];
+        static int[] sequencianumbers = new int[10] { 1, 2, 4, 5, 6, 7, -3, 8, 10, 9 };
+        
+        static int maiorValor = sequencianumbers[0];
+        static int menorValor = sequencianumbers[0];
+        
+        
        
             
             
             
         static void OrdenarOsNumeros()
         {
-            Console.WriteLine("1° valor: " + numbers[0]);
-            Console.WriteLine("2° valor: " + numbers[1]);
-            Console.WriteLine("3° valor: " + numbers[2]);
-            Console.WriteLine("4° valor: " + numbers[3]);
-            Console.WriteLine("5° valor: " + numbers[4]);
-            Console.WriteLine("6° valor: " + numbers[5]);
-            Console.WriteLine("7° valor: " + numbers[6]);
-            Console.WriteLine("8° valor: " + numbers[7]);
-            Console.WriteLine("9° valor: " + numbers[8]);
-            Console.WriteLine("10° valor: " + numbers[9]);
+            for ( int i = 0; i < sequencianumbers.Length; i++ )
+            {
+                Console.Write(" " + sequencianumbers[i] );             
+                             
+            }
         }
 
         static void RemoverUmNumeroDaSequencia()
         {
-            Console.WriteLine("1° valor: " + numbers[0]);
-            Console.WriteLine("2° valor: " + numbers[1]);
-            Console.WriteLine("3° valor: " + numbers[2]);
-            Console.WriteLine("4° valor: " + numbers[3]);
-            Console.WriteLine("5° valor: " + numbers[4]);
-            Console.WriteLine("6° valor: " + numbers[5]);           
-            Console.WriteLine("8° valor: " + numbers[7]);
-            Console.WriteLine("9° valor: " + numbers[8]);
-            Console.WriteLine("10° valor: " + numbers[9]);
+            Console.WriteLine("Digite o número para remover: "); 
+            int numeroParaRemover = int.Parse( Console.ReadLine() );
 
-            Console.WriteLine("O número negativo foi removido!");  
+            int qtdNumerosParaRemover = 0;
 
+            for ( int i = 0; i < sequencianumbers.Length; i++ )
+            {
+                if (sequencianumbers[i] == numeroParaRemover )
+                {
+                    qtdNumerosParaRemover++;
+                }
+           
+            }
+            int[] novaSequenciaNumbers = new int[sequencianumbers.Length - qtdNumerosParaRemover];
+            int j = 0;
+            for ( int i = 0; i < sequencianumbers.Length; i++)
+            {
+                if ( sequencianumbers[i] != numeroParaRemover)
+                {
+                    novaSequenciaNumbers[i] = sequencianumbers[i];
+                    j++;
+                }
+
+            }
+            Console.WriteLine("Nova sequência: ");
+
+
+            for (int i = 0; i < novaSequenciaNumbers.Length; i++)
+            {
+                Console.Write(" " + novaSequenciaNumbers[i]);
+
+            }
         }
+
 
 
 
         static void EncontrarMenorValor()
         {
-            Console.WriteLine("O menor valor é " + menorValor);
+            for ( int i = 0; i < sequencianumbers.Length;i++ )
+            {
+                if (sequencianumbers[i] < menorValor)
+                {
+                    menorValor = sequencianumbers[i];
+                }
+
+            }
+            Console.WriteLine();
+            Console.WriteLine("O menor valor é: " + menorValor);
 
         }
 
 
         static void EncontrarMaiorValor()
         {
-            Console.WriteLine("O maior valor é " + maiorValor);
+            
+           for ( int i = 0; i < sequencianumbers.Length;i++ )
+           {
+               if (sequencianumbers[i] > maiorValor)
+               {
+                    maiorValor = sequencianumbers[i];
+               }
 
+           }
+            Console.WriteLine();
+            Console.WriteLine("O maior valor é: " + maiorValor);
         }
 
 
 
         static void EncontrarOs3MaioresValores()
         {
-            Console.WriteLine("Maior valor: " + maiorValor);
-            Console.WriteLine("Segundo maior: " + segundoMaior);
-            Console.WriteLine("Terceiro maior: " + terceiroMaior);
+            Array.Sort(sequencianumbers);
+            Array.Reverse(sequencianumbers);
+            int[] tresMaiores = new int[3];
+
+            for ( int i = 0; i < tresMaiores.Length;i++)
+            {
+                tresMaiores[i] = sequencianumbers[i];      
+            }
+            Console.WriteLine();
+            
+            Console.WriteLine("Os três maiores: ");
+                
+                for (int i = 0; i < tresMaiores.Length; i++)
+            {
+                Console.Write(" " + tresMaiores[i]);
+                
+           } 
+            Console.ReadLine();
         }
 
-        static int ValoresNegativos()
+
+
+        static int[] ValoresNegativos()
         {
-         
-            Console.WriteLine("Valores negativos são: " + valorNegativo);
-            return valorNegativo;
+            Array.Reverse (sequencianumbers);
+            int qtdNumerosNegativos = 0;
+
+            for ( int i  = 0 ; i < sequencianumbers.Length; ++i )
+            {
+                if (sequencianumbers[i] < 0)
+                    qtdNumerosNegativos++;
+            }
+
+            int[] valoresNegativos = new int[qtdNumerosNegativos];
+
+            for (int i = 0; i < sequencianumbers.Length; ++i)
+            {
+
+                if (sequencianumbers[i] < 0)
+                {
+                    valoresNegativos[i] = sequencianumbers[i];
+                }
+
+            }
+            Console.WriteLine();
+            Console.WriteLine("Os valores negativos são: ");
+            
+
+            for (int i = 0; i < valoresNegativos.Length; i++)
+            {
+                Console.Write(" " + valoresNegativos[i]);
+
+            }
+
+            return valoresNegativos;
         }
 
-        static int ValorMedio()
+        static decimal ValorMedio()
         {
-            int valorMedio = (numbers.Length - 1) / 2;
-           
-            Console.WriteLine("O valor médio desses valores é: "+valorMedio);
+            int valortotal = 0;
+            for ( int i = 0; i < sequencianumbers.Length; i++)
+            {
+                valortotal = valortotal + sequencianumbers[i];
+            }
+            decimal valorMedio = valortotal / sequencianumbers.Length;
+            Console.WriteLine();
+            Console.WriteLine("O valor médio desses valores é: " + valorMedio);
             
             return valorMedio;
-
         }
 
 
@@ -90,10 +174,8 @@
             
             OrdenarOsNumeros();
             Console.WriteLine();
-            EncontrarMaiorValor();
-            Console.WriteLine();
-            EncontrarMenorValor();
-            Console.WriteLine( );
+            EncontrarMaiorValor();           
+            EncontrarMenorValor();           
             ValorMedio();
             Console.WriteLine();
             EncontrarOs3MaioresValores();
